@@ -79,6 +79,7 @@ void Board::setStone(int selectedColumn,Player* active)
         	std::cout << "Player " << active->name <<" has won. Congratulations!" << std::endl;
         	resetBoard();
         	return;
+
         }
         if(checkFull())
         {
