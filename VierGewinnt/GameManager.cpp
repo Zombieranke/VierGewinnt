@@ -9,46 +9,62 @@
 #include <iostream>
 #include "Board.h"
 #include "Player.h"
-#include "Menu.h"
 
+
+int menu(int &numberOfRounds);
 
 int main()
 {
 
-	int numberOfBotGames = 0;
-	bool playAgain = false;
+	int numberOfRounds = 0;
 
-	int gameState = Menu(&numberOfBotGames);
+	int gameState = menu(&numberOfRounds);
 
 	while(gameState > 0)
 	{
-		if(playAgain == false && numberOfBotGames <= 0)
-		{
-			gameState = Menu(&numberOfBotGames);
-		}
-
+		gameState = menu(&numberOfRounds);
 
 		if(gameState == 2)
 		{
-			playAgain = playHumanVersusHuman;
+			for(;numberOfRounds>0;numberOfRounds--)
+			{
+				playHumanVersusHuman;
+			}
 		}
-
 
 		if(gameState == 3)
 		{
-			playAgain = playHumanVersusAI;
+			for(;numberOfRounds>0;numberOfRounds--)
+			{
+				playHumanVersusAI;
+			}
 		}
 
 
 		if(gameState == 4)
 		{
-			for(;numberOfBotGames>0;numberOfBotGames--)
+			for(;numberOfRounds>0;numberOfRounds--)
 			{
 				playAIVersusAI;
 			}
-			playAgain = false;
 		}
 
 
 	}
+
+
+}
+
+
+int menu(int &numberOfRounds)
+{
+	int playerNumber;
+
+	std::cout << "           WELCOME TO CONNECTFOUR!\n";
+	std::cout << "            GAME OF THE YEAR 1922\n";
+	std::cout << "*****************************************************\n";
+	std::cout << "How many human players do you wish to have?\nPlease enter the number here: ";
+	std::cin >> playerNumber;
+
+
 }
