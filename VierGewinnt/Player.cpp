@@ -8,12 +8,16 @@
 
 #include "Player.h"
 
-Player::Player() {
-	// TODO Auto-generated constructor stub
+Player::Player()
+{
+	name = "Horst";
+	winCount = 0;
+	playerColor = 'A';
 
 }
 
-Player::~Player() {
+Player::~Player()
+{
 	// TODO Auto-generated destructor stub
 }
 

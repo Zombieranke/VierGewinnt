@@ -7,12 +7,14 @@
 
 #include "Menu.h"
 
-Menu::Menu() {
+Menu::Menu()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Menu::~Menu() {
+Menu::~Menu()
+{
 	// TODO Auto-generated destructor stub
 }
 

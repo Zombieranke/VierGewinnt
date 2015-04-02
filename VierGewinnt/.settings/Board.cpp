@@ -8,9 +8,11 @@
 
 #include <iostream>
 #include "Board.h"
+#include "Player.h"
 
 const int Board::width = 8;
 const int Board::height = 5;
+
 
 Board::Board()
 {
@@ -42,7 +44,7 @@ void Board::resetBoard()
 	}
 }
 
-void const Board::showBoard()
+const void Board::showBoard()
 {
 	int i = 0;
 	int j = 0;
@@ -50,9 +52,9 @@ void const Board::showBoard()
 	{
 		for(j=0;j<width;j++)
 		{
-			cout << image[i][j];
+			std::cout << field[i][j];
 		}
-		cout  << endl;
+		std::cout  << std::endl;
 	}
 }
 
@@ -97,7 +99,7 @@ void Board::setStone(int selectedColumn,Player* active)
 
 }
 
-bool const Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
+const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
 {
     int i = 0;
     int j = 0;
@@ -211,7 +213,7 @@ bool const Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
 
 }
 
-bool const Board::checkFull()
+const bool Board::checkFull()
 {
 	int i = 0;
 	int j = 0;
