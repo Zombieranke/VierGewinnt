@@ -7,7 +7,7 @@
 #include "HumanPlayer.h"
 using namespace std;
 
-HumanPlayer::HumanPlayer(const string &name, const char &color) : Player(name, color)
+HumanPlayer::HumanPlayer(const string &name, const char &color) : Player(name, playerColor)
 {}
 
 

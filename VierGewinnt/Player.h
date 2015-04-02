@@ -10,7 +10,7 @@
 #define PLAYER_H_
 
 #include <string>
-#include "board.h"
+#include "Board.h"
 
 class Player {
 public:
@@ -18,11 +18,12 @@ public:
 	virtual ~Player();
 	std::string getName() const;
 	void win();
-	virtual int makeMove(const Board * board) const = 0;
+	virtual int makeMove(const Board * &board) const = 0;
 	char getColor() const;
 private:
 	std::string name;
 	int winCount;
+protected:
 	char playerColor;
 
 };

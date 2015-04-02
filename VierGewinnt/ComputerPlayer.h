@@ -15,7 +15,7 @@ class ComputerPlayer : public Player
 		ComputerPlayer();
 		ComputerPlayer(const std::string &name, const char &color);
 		~ComputerPlayer();
-		int makeMove(const Board * board) const;
+		int makeMove(const Board * &board) const;
 };
 
 

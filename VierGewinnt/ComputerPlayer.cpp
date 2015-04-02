@@ -12,11 +12,11 @@ ComputerPlayer::ComputerPlayer()
 	//do something
 }
 
-ComputerPlayer::ComputerPlayer(const string &name, const char &color) : Player(name, color)
+ComputerPlayer::ComputerPlayer(const string &name, const char &color) : Player(name, playerColor)
 {}
 
 
-int ComputerPlayer::makeMove(const Board * board) const
+int ComputerPlayer::makeMove(const Board * &board) const
 {
 	//do something
 	return 0;

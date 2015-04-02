@@ -15,8 +15,8 @@ using namespace std;
 
 Board::Board()
 {
-	const int Board::width = 8;
-	const int Board::height = 5;
+	width = 8;
+	height = 5;
 
     int i = 0;
     int j = 0;
@@ -31,10 +31,10 @@ Board::Board()
     }
 }
 
-Board::Board(int height,int width)
+Board::Board(int boardHeight,int boardWidth)
 {
-	const int Board::width = width;
-	const int Board::height = height;
+	width = boardWidth;
+	height = boardHeight;
 
     int i = 0;
     int j = 0;
@@ -117,10 +117,12 @@ bool Board::setStone(int selectedColumn,Player* active)
     else
     {
     	cerr << "Unallowed move: Column is full" << endl;
+    	return false;
     }
 
 
 }
+
 
 const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
 {
@@ -239,7 +241,6 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
 const bool Board::checkFull()
 {
 	int i = 0;
-	int j = 0;
 
 	for(i=0;i<width;i++)  //one has to check only the highest row
 	{

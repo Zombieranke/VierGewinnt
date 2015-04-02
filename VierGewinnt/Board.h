@@ -5,10 +5,12 @@
  *      Author: Arthur Bouz
  *      		Christoph Majcen
  */
-#include "Player.h"
+
 
 #ifndef BOARD_H_
 #define BOARD_H_
+
+#include "Player.h"
 
 class Board
 {
@@ -16,14 +18,14 @@ public:
 	bool setStone(int selectedColumn, Player * active);
 	const void showBoard();
 	Board();
-	Board(int height,int width)
+	Board(int height,int width);
 	~Board();
 
 private:
 	const bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active);
 	const bool checkFull();
-	const static int width;
-	const static int height;
+	int width;
+	int height;
 	char * field;
 	void resetBoard();
 };
