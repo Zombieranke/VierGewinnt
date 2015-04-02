@@ -16,17 +16,20 @@
  * 				O winCount
  */
 
-
+#include <string>
 
 class Player {
 public:
 	Player();
 	virtual ~Player();
-	char name;
+	std::string getName() const;
+	void win();
+	void lose();
+private:
+	std::string name;
+	int lossCount;
 	int winCount;
 	char playerColor;
-private:
-
 
 };
 

@@ -30,13 +30,13 @@ int main()
 
 		if(gameState == 2)
 		{
-			playAgain = playHumanVersusHuman
+			playAgain = playHumanVersusHuman;
 		}
 
 
 		if(gameState == 3)
 		{
-			playAgain = playHumanVersusAI
+			playAgain = playHumanVersusAI;
 		}
 
 
@@ -44,7 +44,7 @@ int main()
 		{
 			for(;numberOfBotGames>0;numberOfBotGames--)
 			{
-				playAIVersusAI
+				playAIVersusAI;
 			}
 			playAgain = false;
 		}

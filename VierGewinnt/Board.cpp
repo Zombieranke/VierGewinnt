@@ -12,7 +12,7 @@
 
 const int Board::width = 8;
 const int Board::height = 5;
-
+using namespace std;
 
 Board::Board()
 {
@@ -52,9 +52,9 @@ const void Board::showBoard()
 	{
 		for(j=0;j<width;j++)
 		{
-			std::cout << field[i][j];
+			cout << field[i][j];
 		}
-		std::cout  << std::endl;
+		cout  << endl;
 	}
 }
 
@@ -76,24 +76,24 @@ void Board::setStone(int selectedColumn,Player* active)
     if(lastStoneRow >= 0)
     {
         field[lastStoneRow][selectedColumn] = active->playerColor;
-        if(checkWon(lastStoneRow,lastStoneColumn,Player* active))
+        if(checkWon(lastStoneRow,lastStoneColumn,active))
         {
-        	active->winCount++;
-        	std::cout << "Player " << active->name <<" has won. Congratulations!" << std::endl;
+        	active->win();
+        	cout << "Player " << active->getName() <<" has won. Congratulations!" << endl;
         	resetBoard();
         	return;
 
         }
         if(checkFull())
         {
-        	std::cout << "The board is full and noone has won. It's a draw" << std::endl;
+        	cout << "The board is full and noone has won. It's a draw" << endl;
         	resetBoard();
         }
 
     }
     else
     {
-    	std::cerr << "Unallowed move: Column is full" << std::endl;
+    	cerr << "Unallowed move: Column is full" << endl;
     }
 
 
@@ -233,20 +233,5 @@ Board::~Board()
 {
     delete[] field;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
