@@ -5,6 +5,7 @@
  *      Author: Arthur Bouz
  *      		Christoph Majcen
  */
+#include "Player.h"
 
 #ifndef BOARD_H_
 #define BOARD_H_
