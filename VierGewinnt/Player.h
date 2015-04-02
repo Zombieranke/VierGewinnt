@@ -22,10 +22,11 @@ class Player {
 public:
 	Player();
 	virtual ~Player();
-private:
 	char name;
 	int winCount;
 	char playerColor;
+private:
+
 
 };
 

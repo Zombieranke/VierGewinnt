@@ -13,7 +13,7 @@
 class Board
 {
 public:
-	void setStone(int x, int y, Player* active);
+	void setStone(int selectedColumn, Player* active);
 	void const showBoard();
 	Board();
 	~Board();
