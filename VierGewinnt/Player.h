@@ -9,13 +9,6 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-
-/*  HALLO STOFFL! PLAYER BRAUCHEN FOLGENDE VARIABLEN (AUF JEDEN FALL DIESE - VIELLEICHT AUCH MEHR):
- * 				O name
- * 				O color
- * 				O winCount
- */
-
 #include <string>
 
 class Player {

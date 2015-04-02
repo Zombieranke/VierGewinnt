@@ -14,15 +14,15 @@ class Board
 {
 public:
 	void setStone(int selectedColumn, Player* active);
-	void const showBoard();
+	const void showBoard();
 	Board();
 	~Board();
 
 private:
-    bool const checkWon(int lastStoneRow,int lastStoneColumn,Player* active);
-    bool const checkFull();
-	static const int width;
-	static const int height;
+	const bool checkWon(int lastStoneRow,int lastStoneColumn,Player* active);
+	const bool checkFull();
+	const static int width;
+	const static int height;
 	char ** field;
 	void resetBoard();
 };
