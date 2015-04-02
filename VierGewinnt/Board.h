@@ -16,6 +16,7 @@ public:
 	bool setStone(int selectedColumn, Player * active);
 	const void showBoard();
 	Board();
+	Board(int height,int width)
 	~Board();
 
 private:

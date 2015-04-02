@@ -10,21 +10,41 @@
 #include "Board.h"
 #include "Player.h"
 
-const int Board::width = 8;
-const int Board::height = 5;
+
 using namespace std;
 
 Board::Board()
 {
+	const int Board::width = 8;
+	const int Board::height = 5;
+
     int i = 0;
     int j = 0;
-    field = new char[height][width];
+    field = new char[height*width];
 
     for(i=0;i<height;i++)
     {
         for(j=0;j<width;j++)
         {
-            field[i][j] = '.';
+        	field[i*width+j] = '.';
+        }
+    }
+}
+
+Board::Board(int height,int width)
+{
+	const int Board::width = width;
+	const int Board::height = height;
+
+    int i = 0;
+    int j = 0;
+    field = new char[height*width];
+
+    for(i=0;i<height;i++)
+    {
+        for(j=0;j<width;j++)
+        {
+            field[i*width+j] = '.';
         }
     }
 }
@@ -39,7 +59,7 @@ void Board::resetBoard()
 	{
 		for(j=0;j<width;j++)
 		{
-			field[i][j] = '.';
+			field[i*width+j] = '.';
 		}
 	}
 }
@@ -52,7 +72,7 @@ const void Board::showBoard()
 	{
 		for(j=0;j<width;j++)
 		{
-			cout << field[i][j];
+			cout << field[i*width+j];
 		}
 		cout  << endl;
 	}
@@ -67,7 +87,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 
     for(i=0;i<height;i++)
     {
-        if(field[i][selectedColumn] == '.')
+        if(field[i*width+selectedColumn] == '.')
         {
             lastStoneRow++;
         }
@@ -75,7 +95,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 
     if(lastStoneRow >= 0)
     {
-        field[lastStoneRow][selectedColumn] = active->playerColor;
+        field[lastStoneRow*width+selectedColumn] = active->playerColor;
         if(checkWon(lastStoneRow,lastStoneColumn,active))
         {
         	active->win();
@@ -119,7 +139,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[lastStoneRow][i] == active->playerColor)
+            if(field[lastStoneRow*width+i] == active->playerColor)
             {
                 rowCount++;
                 if(rowCount == 4)
@@ -143,7 +163,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[i][lastStoneColumn] == active->playerColor)
+            if(field[i*width+lastStoneColumn] == active->playerColor)
             {
                 columnCount++;
                 if(columnCount == 4)
@@ -170,7 +190,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[j][i] == active->playerColor)
+            if(field[j*width+i] == active->playerColor)
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -198,7 +218,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[j][i] == active->playerColor)
+            if(field[j*width+i] == active->playerColor)
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -223,7 +243,7 @@ const bool Board::checkFull()
 
 	for(i=0;i<width;i++)  //one has to check only the highest row
 	{
-			if(field[0][i] == '.')
+			if(field[i] == '.')
 			{
 				return false;
 			}

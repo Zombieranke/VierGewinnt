@@ -60,6 +60,7 @@ int menu(Player * &p1, Player * &p2)
 	std::cout << "How many human players do you wish to have?\nPlease enter the number here: ";
 	std::cin >> numberOfPlayers;
 	std::cout << std::endl;
+
 	while(numberOfPlayers < 0 || numberOfPlayers > 2)
 	{
 		std::cout << "ConnectFour is a game for two players, please enter a value between 0 and 2 for the number of human players who participate: ";
