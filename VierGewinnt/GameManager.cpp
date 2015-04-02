@@ -10,44 +10,34 @@
 #include <string>
 #include "Board.h"
 #include "Player.h"
+#include "HumanPlayer.h"
+#include "Computerplayer.h"
 
 
-int menu(int &numberOfRounds);
+
+int menu(Player * &p1, Player * &p2);
 
 int main()
 {
-
+	int i = 0;
 	int numberOfRounds = 0;
 
-	int gameState = menu(&numberOfRounds);
+	Player * players[2];
+	Player * activePlayer;
+	Board * board = new Board();
 
-	while(gameState > 0)
+
+	int numberOfRounds = menu(players[0], players[1]);
+
+	for(i = 0; i<numberOfRounds; i++)
 	{
-		gameState = menu(&numberOfRounds);
-
-		if(gameState == 2)
+		bool over = false;
+		int turn = 0;
+		while(!over)
 		{
-			for(;numberOfRounds>0;numberOfRounds--)
-			{
-				playHumanVersusHuman;
-			}
-		}
-
-		if(gameState == 3)
-		{
-			for(;numberOfRounds>0;numberOfRounds--)
-			{
-				playHumanVersusAI;
-			}
-		}
-
-
-		if(gameState == 4)
-		{
-			for(;numberOfRounds>0;numberOfRounds--)
-			{
-				playAIVersusAI;
-			}
+			activePlayer = players[turn];
+			turn = (turn + 1) % 2;
+			over = board->setStone(activePlayer->makeMove(board), activePlayer);
 		}
 
 
@@ -57,8 +47,9 @@ int main()
 }
 
 
-int menu(int &numberOfRounds)
+int menu(Player * &p1, Player * &p2)
 {
+	int numberOfRounds = 1;
 	int numberOfPlayers;
 	std::string tempPlayerName = "";
 	char tempColor = ' ';
@@ -93,7 +84,7 @@ int menu(int &numberOfRounds)
 			std::cout << std::endl;
 		}
 
-		Human* p1 = Player(tempPlayerName,tempColor);
+		p1 = new HumanPlayer(tempPlayerName,tempColor);
 
 			std::cout << p1->getName() <<" has chosen " << p1->getColor() << "." << std::endl;
 
@@ -115,29 +106,33 @@ int menu(int &numberOfRounds)
 				std::cout << std::endl;
 			}
 
-			Human* p2 = Player(tempPlayerName, tempColor);
+			p2 = HumanPlayer(tempPlayerName, tempColor);
 
 			std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
 
 		}
 		else
 		{
-			ComputerPlayer* c1 = new ComputerPlayer();
+			p2 = new ComputerPlayer();
 
-			std::cout << c1->getName() <<" has chosen " << c1->getColor() << "." << std::endl;
+			std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
 
 		}
 	}
 	else
 	{
-		ComputerPlayer* c1 = new ComputerPlayer();
+		p1 = new ComputerPlayer();
 
-		std::cout << c1->getName() <<" has chosen " << c1->getColor() << "." << std::endl;
+		std::cout << p1->getName() <<" has chosen " << p1->getColor() << "." << std::endl;
 
-		ComputerPlayer* c2 = new ComputerPlayer();
 
-		std::cout << c2->getName() <<" has chosen " << c2->getColor() << "." << std::endl;
+		p2 = new ComputerPlayer();
+
+		std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
 	}
 
+	std::cout << "How many rounds would you like to play?";
+	std::cin >> numberOfRounds;
+	return numberOfRounds;
 
 }

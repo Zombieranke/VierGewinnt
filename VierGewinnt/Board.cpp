@@ -58,7 +58,7 @@ const void Board::showBoard()
 	}
 }
 
-void Board::setStone(int selectedColumn,Player* active)
+bool Board::setStone(int selectedColumn,Player* active)
 {
     int lastStoneColumn = selectedColumn;
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
@@ -81,14 +81,17 @@ void Board::setStone(int selectedColumn,Player* active)
         	active->win();
         	cout << "Player " << active->getName() <<" has won. Congratulations!" << endl;
         	resetBoard();
-        	return;
+        	return true;
 
         }
+
         if(checkFull())
         {
         	cout << "The board is full and noone has won. It's a draw" << endl;
         	resetBoard();
+        	return true;
         }
+        return false;
 
     }
     else

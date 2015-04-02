@@ -13,17 +13,17 @@
 class Board
 {
 public:
-	void setStone(int selectedColumn, Player* active);
+	bool setStone(int selectedColumn, Player * active);
 	const void showBoard();
 	Board();
 	~Board();
 
 private:
-	const bool checkWon(int lastStoneRow,int lastStoneColumn,Player* active);
+	const bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active);
 	const bool checkFull();
 	const static int width;
 	const static int height;
-	char ** field;
+	char * field;
 	void resetBoard();
 };
 

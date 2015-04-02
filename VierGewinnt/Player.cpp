@@ -7,13 +7,28 @@
  */
 
 #include "Player.h"
+using namespace std;
 
-Player::Player()
+Player::Player(const string &name, const char &color)
 {
-	name = "Horst";
+	playerColor = color;
+	this->name = name;
 	winCount = 0;
-	playerColor = 'A';
+}
 
+string Player::getName() const
+{
+	return name;
+}
+
+char Player::getColor() const
+{
+	return playerColor;
+}
+
+void Player::win()
+{
+	winCount++;
 }
 
 Player::~Player()
