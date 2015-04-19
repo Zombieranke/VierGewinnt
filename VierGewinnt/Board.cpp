@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Board.h"
 #include "Player.h"
+#include "Stack.h"
+#include <cstddef>
 
 
 using namespace std;
@@ -26,6 +28,8 @@ Board::Board() : width(8), height(5)
         	field[i*width+j] = ' ';
         }
     }
+
+    lastMoves = NULL;
 }
 
 Board::Board(int boardHeight,int boardWidth) :  width(boardWidth), height(boardHeight)
@@ -41,6 +45,8 @@ Board::Board(int boardHeight,int boardWidth) :  width(boardWidth), height(boardH
             field[i*width+j] = ' ';
         }
     }
+
+    lastMoves = NULL;
 }
 
 

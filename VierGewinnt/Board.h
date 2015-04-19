@@ -10,10 +10,14 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
+#include "Stack.h"
+
 class Player;
 
 class Board
 {
+	friend class ComputerPlayer;
+
 public:
 	bool setStone(int selectedColumn, Player * active);
 	void showBoard() const;
@@ -30,6 +34,7 @@ private:
 	const int height;
 	char * field;
 	void resetBoard();
+	Stack* lastMoves;
 };
 
 #endif /* BOARD_H_ */
