@@ -80,32 +80,30 @@ int menu(Player * &p1, Player * &p2)
 
 	if(numberOfPlayers > 0)
 	{
-		cout << "Player 1, please enter your name: " << endl;
+		cout << "Player 1, please enter your name: ";
 		cin >> tempPlayerName;
-		cout << endl;
 
-		cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: " << endl;
+		cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: ";
 		cin >> tempColor;
 		cout << endl;
 
 		while(tempColor == '.' || tempColor == ' ')
 		{
-			cout << "This symbol is not available. Please choose another one: " << endl;
+			cout << "This symbol is not available. Please choose another one: ";
 			cin >> tempColor;
 			cout << endl;
 		}
 
 		p1 = new HumanPlayer(tempPlayerName,tempColor);
 
-			cout << p1->getName() <<" has chosen " << p1->getColor() << "." << endl;
+			cout << p1->getName() <<" has chosen " << p1->getColor() << "." << endl << endl;
 
 		if(numberOfPlayers == 2)
 		{
-			cout << "Player 2, please enter your name: " << endl;
+			cout << "Player 2, please enter your name: ";
 			cin >> tempPlayerName;
-			cout << endl;
 
-			cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: " << endl;
+			cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: ";
 			cin >> tempColor;
 			cout << endl;
 
@@ -119,14 +117,14 @@ int menu(Player * &p1, Player * &p2)
 
 			p2 = new HumanPlayer(tempPlayerName, tempColor);
 
-			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
+			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl << endl;
 
 		}
 		else
 		{
 			p2 = new ComputerPlayer();
 
-			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
+			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl << endl;
 
 		}
 	}
@@ -142,7 +140,7 @@ int menu(Player * &p1, Player * &p2)
 		cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
 	}
 
-	cout << "How many rounds would you like to play?";
+	cout << "How many rounds would you like to play? ";
 	cin >> numberOfRounds;
 	return numberOfRounds;
 

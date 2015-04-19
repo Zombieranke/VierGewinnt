@@ -17,7 +17,7 @@ class Board
 public:
 	bool setStone(int selectedColumn, Player * active);
 	void showBoard() const;
-	bool checkMove() const;
+	bool checkMove(int column) const;
 	Board();
 	Board(int boardHeight, int boardWidth);
 	~Board();
