@@ -11,8 +11,9 @@
 
 class Stack {
 public:
-	void push(Stack* list, int value);
-	int pop(Stack* list);
+	void push(Stack* &list, int value);
+	int pop(Stack* &list);
+	void print(Stack* list);
 	Stack();
 	Stack(int value);
 	~Stack();

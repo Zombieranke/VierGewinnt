@@ -23,7 +23,7 @@ Stack::Stack( int value)
 }
 
 
-void Stack::push(Stack* list, int value)
+void Stack::push(Stack* &list, int value)
 {
 	Stack* newEntry = new Stack(value);
 	newEntry->next = list;
@@ -31,7 +31,7 @@ void Stack::push(Stack* list, int value)
 }
 
 
-int Stack::pop(Stack* list)
+int Stack::pop(Stack* &list)
 {
 	Stack* temp = NULL;
 	int returnValue = 0;
@@ -51,6 +51,16 @@ int Stack::pop(Stack* list)
 	}
 }
 
+void Stack::print(Stack* list)
+{
+	Stack* temp = list;
+
+	while(temp!=NULL)
+	{
+		std::cout << " " << temp->value;
+		temp = temp->next;
+	}
+}
 
 Stack::~Stack()
 {

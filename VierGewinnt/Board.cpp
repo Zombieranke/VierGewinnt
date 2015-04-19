@@ -95,6 +95,11 @@ void Board::showBoard() const
 	{
 		cout << " " << j+1 << " ";
 	}
+
+	cout << "Last Move: ";
+	lastMoves->print(lastMoves);
+	cout  << endl;
+
 }
 
 bool Board::setStone(int selectedColumn,Player* active)
@@ -104,6 +109,7 @@ bool Board::setStone(int selectedColumn,Player* active)
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
 
+    lastMoves->push(lastMoves,selectedColumn);
 
     for(i=0;i<height;i++)
     {
