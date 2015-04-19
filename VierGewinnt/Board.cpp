@@ -126,7 +126,25 @@ bool Board::setStone(int selectedColumn,Player* active)
 
 bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 {
-    int i = 0;
+	int checkSum[4];
+	checkSum[0] = check(0, -1, lastStoneRow, lastStoneColumn -1, active) + 1 + check(0, 1, lastStoneRow, lastStoneColumn + 1, active);
+	checkSum[1] = 1 + check(-1, 0, lastStoneRow - 1, lastStoneColumn, active);
+	checkSum[2] = check(-1, -1, lastStoneRow - 1, lastStoneColumn - 1, active) + 1 + check(1, 1, lastStoneRow + 1, lastStoneColumn + 1, active);
+	checkSum[3] = check(-1, 1, lastStoneRow - 1, lastStoneColumn + 1, active) + 1 + check(1, -1, lastStoneRow + 1, lastStoneColumn - 1, active);
+
+	for(int i : checkSum)
+	{
+		if(i>=4)
+		{
+			return true;
+		}
+	}
+	return false;
+
+
+
+
+    /*int i = 0;
     int j = 0;
     int rowCount = 0;		//actually one variable would be enough but i decided to have matching names
     int columnCount = 0;
@@ -234,8 +252,25 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
             }
         }
     }
-    return false;
+    return false;*/
 
+}
+
+int Board::check(int dirRow, int dirCol, int row, int col, Player * active)  const
+{
+	if(row<0 || row>=height || col<0 || col>=width)
+	{
+		return 0;
+	}
+
+	if(field[row*width+col] == active->getColor())
+	{
+		return 1 + check(dirRow, dirCol, row + dirRow, col + dirCol, active);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 bool Board::checkFull()const

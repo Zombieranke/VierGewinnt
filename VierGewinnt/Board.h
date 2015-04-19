@@ -17,12 +17,14 @@ class Board
 public:
 	bool setStone(int selectedColumn, Player * active);
 	void showBoard() const;
+	bool checkMove() const;
 	Board();
 	Board(int boardHeight, int boardWidth);
 	~Board();
 
 private:
 	bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active) const;
+	int check(int dirRow, int dirCol, int row, int col, Player * active) const;
 	bool checkFull() const;
 	const int width;
 	const int height;
