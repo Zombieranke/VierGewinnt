@@ -13,12 +13,9 @@
 
 using namespace std;
 
-Board::Board()
+Board::Board() : width(8), height(5)
 {
-	width = 8;
-	height = 5;
-
-    int i = 0;
+	int i = 0;
     int j = 0;
     field = new char[height*width];
 
@@ -31,11 +28,8 @@ Board::Board()
     }
 }
 
-Board::Board(int boardHeight,int boardWidth)
+Board::Board(int boardHeight,int boardWidth) :  width(boardWidth), height(boardHeight)
 {
-	width = boardWidth;
-	height = boardHeight;
-
     int i = 0;
     int j = 0;
     field = new char[height*width];
@@ -64,7 +58,7 @@ void Board::resetBoard()
 	}
 }
 
-const void Board::showBoard()
+void Board::showBoard() const
 {
 	int i = 0;
 	int j = 0;
@@ -80,6 +74,12 @@ const void Board::showBoard()
 
 bool Board::setStone(int selectedColumn,Player* active)
 {
+	if(selectedColumn>=width)
+	{
+		cerr << "Unhallowed move: column out of range";
+		return false;
+	}
+
     int lastStoneColumn = selectedColumn;
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
@@ -95,7 +95,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 
     if(lastStoneRow >= 0)
     {
-        field[lastStoneRow*width+selectedColumn] = active->playerColor;
+        field[lastStoneRow*width+selectedColumn] = active->getColor();
         if(checkWon(lastStoneRow,lastStoneColumn,active))
         {
         	active->win();
@@ -124,7 +124,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 }
 
 
-const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
+bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 {
     int i = 0;
     int j = 0;
@@ -141,7 +141,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[lastStoneRow*width+i] == active->playerColor)
+            if(field[lastStoneRow*width+i] == active->getColor())
             {
                 rowCount++;
                 if(rowCount == 4)
@@ -165,7 +165,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[i*width+lastStoneColumn] == active->playerColor)
+            if(field[i*width+lastStoneColumn] == active->getColor())
             {
                 columnCount++;
                 if(columnCount == 4)
@@ -192,7 +192,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[j*width+i] == active->playerColor)
+            if(field[j*width+i] == active->getColor())
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -220,7 +220,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
         }
         else
         {
-            if(field[j*width+i] == active->playerColor)
+            if(field[j*width+i] == active->getColor())
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -238,7 +238,7 @@ const bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active)
 
 }
 
-const bool Board::checkFull()
+bool Board::checkFull()const
 {
 	int i = 0;
 

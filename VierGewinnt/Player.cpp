@@ -9,6 +9,13 @@
 #include "Player.h"
 using namespace std;
 
+Player::Player()
+{
+	name = "marvin";
+	playerColor = 'x';
+	winCount = 0;
+}
+
 Player::Player(const string &name, const char &color)
 {
 	playerColor = color;
@@ -24,6 +31,11 @@ string Player::getName() const
 char Player::getColor() const
 {
 	return playerColor;
+}
+
+int Player::getWins() const
+{
+	return winCount;
 }
 
 void Player::win()

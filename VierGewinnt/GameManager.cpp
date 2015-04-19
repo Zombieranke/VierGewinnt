@@ -12,7 +12,7 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "Computerplayer.h"
-
+using namespace std;
 
 
 int menu(Player * &p1, Player * &p2);
@@ -27,7 +27,7 @@ int main()
 	Board * board = new Board();
 
 
-	int numberOfRounds = menu(players[0], players[1]);
+	numberOfRounds = menu(players[0], players[1]);
 
 	for(i = 0; i<numberOfRounds; i++)
 	{
@@ -35,13 +35,23 @@ int main()
 		int turn = 0;
 		while(!over)
 		{
+			board->showBoard();
 			activePlayer = players[turn];
 			turn = (turn + 1) % 2;
 			over = board->setStone(activePlayer->makeMove(board), activePlayer);
 		}
+		cout << "Statistics: " << endl;
+		for( Player * p : players)
+		{
+			cout << p->getName() << " has won " << p->getWins() << " times" <<endl;
+		}
+
 
 
 	}
+	delete players[0];
+	delete players[1];
+	delete board;
 
 
 }
@@ -51,72 +61,72 @@ int menu(Player * &p1, Player * &p2)
 {
 	int numberOfRounds = 1;
 	int numberOfPlayers;
-	std::string tempPlayerName = "";
+	string tempPlayerName = "";
 	char tempColor = ' ';
 
-	std::cout << "           WELCOME TO CONNECTFOUR!" << std::endl;
-	std::cout << "            GAME OF THE YEAR 1922" << std::endl;
-	std::cout << "*****************************************************" << std::endl;
-	std::cout << "How many human players do you wish to have?\nPlease enter the number here: ";
-	std::cin >> numberOfPlayers;
-	std::cout << std::endl;
+	cout << "           WELCOME TO CONNECTFOUR!" << endl;
+	cout << "            GAME OF THE YEAR 1922" << endl;
+	cout << "*****************************************************" << endl;
+	cout << "How many human players do you wish to have?\nPlease enter the number here: ";
+	cin >> numberOfPlayers;
+	cout << endl;
 
 	while(numberOfPlayers < 0 || numberOfPlayers > 2)
 	{
-		std::cout << "ConnectFour is a game for two players, please enter a value between 0 and 2 for the number of human players who participate: ";
-		std::cin >> numberOfPlayers;
-		std::cout << std::endl;
+		cout << "ConnectFour is a game for two players, please enter a value between 0 and 2 for the number of human players who participate: ";
+		cin >> numberOfPlayers;
+		cout << endl;
 	}
 
 	if(numberOfPlayers > 0)
 	{
-		std::cout << "Player 1, please enter your name: " << std::endl;
-		std::cin >> tempPlayerName;
-		std::cout << std::endl;
+		cout << "Player 1, please enter your name: " << endl;
+		cin >> tempPlayerName;
+		cout << endl;
 
-		std::cout << "Which symbol would you like to use for your pieces?" << std::endl << "Enter one here: " << std::endl;
-		std::cin >> tempColor;
-		std::cout << std::endl;
+		cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: " << endl;
+		cin >> tempColor;
+		cout << endl;
 
 		while(tempColor == '.' || tempColor == ' ')
 		{
-			std::cout << "This symbol is not available. Please choose another one: " << std::endl;
-			std::cin >> tempColor;
-			std::cout << std::endl;
+			cout << "This symbol is not available. Please choose another one: " << endl;
+			cin >> tempColor;
+			cout << endl;
 		}
 
 		p1 = new HumanPlayer(tempPlayerName,tempColor);
 
-			std::cout << p1->getName() <<" has chosen " << p1->getColor() << "." << std::endl;
+			cout << p1->getName() <<" has chosen " << p1->getColor() << "." << endl;
 
 		if(numberOfPlayers == 2)
 		{
-			std::cout << "Player 2, please enter your name: " << std::endl;
-			std::cin >> tempPlayerName;
-			std::cout << std::endl;
+			cout << "Player 2, please enter your name: " << endl;
+			cin >> tempPlayerName;
+			cout << endl;
 
-			std::cout << "Which symbol would you like to use for your pieces?" << std::endl << "Enter one here: " << std::endl;
-			std::cin >> tempColor;
-			std::cout << std::endl;
+			cout << "Which symbol would you like to use for your pieces?" << endl << "Enter one here: " << endl;
+			cin >> tempColor;
+			cout << endl;
 
 
 			while(tempColor == p1->getColor() || tempColor == '.' || tempColor == ' ')
 			{
-				std::cout << "This symbol is not available. Please choose another one: " << std::endl;
-				std::cin >> tempColor;
-				std::cout << std::endl;
+				cout << "This symbol is not available. Please choose another one: " << endl;
+				cin >> tempColor;
+				cout << endl;
 			}
 
-			p2 = HumanPlayer(tempPlayerName, tempColor);
+			p2 = new HumanPlayer(tempPlayerName, tempColor);
 
-			std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
+			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
 
 		}
 		else
 		{
 			p2 = new ComputerPlayer();
 
-			std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
+			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
 
 		}
 	}
@@ -124,16 +134,16 @@ int menu(Player * &p1, Player * &p2)
 	{
 		p1 = new ComputerPlayer();
 
-		std::cout << p1->getName() <<" has chosen " << p1->getColor() << "." << std::endl;
+		cout << p1->getName() <<" has chosen " << p1->getColor() << "." << endl;
 
 
 		p2 = new ComputerPlayer();
 
-		std::cout << p2->getName() <<" has chosen " << p2->getColor() << "." << std::endl;
+		cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
 	}
 
-	std::cout << "How many rounds would you like to play?";
-	std::cin >> numberOfRounds;
+	cout << "How many rounds would you like to play?";
+	cin >> numberOfRounds;
 	return numberOfRounds;
 
 }

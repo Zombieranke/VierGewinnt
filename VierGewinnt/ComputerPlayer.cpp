@@ -7,16 +7,17 @@
 #include "ComputerPlayer.h"
 using namespace std;
 
-ComputerPlayer::ComputerPlayer()
+ComputerPlayer::ComputerPlayer() :Player()
 {
-	//do something
+	name = "marvin";
+	playerColor = 'x';
 }
 
-ComputerPlayer::ComputerPlayer(const string &name, const char &color) : Player(name, playerColor)
+ComputerPlayer::ComputerPlayer(const string &name, const char &color) : Player(name, color)
 {}
 
 
-int ComputerPlayer::makeMove(const Board * &board) const
+int ComputerPlayer::makeMove(const Board * board) const
 {
 	//do something
 	return 0;

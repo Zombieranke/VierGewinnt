@@ -10,21 +10,23 @@
 #define PLAYER_H_
 
 #include <string>
-#include "Board.h"
+
+class Board;
 
 class Player {
 public:
+	Player();
 	Player(const std::string &name, const char &color);
 	virtual ~Player();
 	std::string getName() const;
 	void win();
-	virtual int makeMove(const Board * &board) const = 0;
+	virtual int makeMove(const Board * board) const = 0;
 	char getColor() const;
-private:
-	std::string name;
-	int winCount;
+	int getWins() const;
 protected:
 	char playerColor;
+	std::string name;
+	int winCount;
 
 };
 

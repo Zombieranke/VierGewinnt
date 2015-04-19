@@ -10,22 +10,22 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-#include "Player.h"
+class Player;
 
 class Board
 {
 public:
 	bool setStone(int selectedColumn, Player * active);
-	const void showBoard();
+	void showBoard() const;
 	Board();
-	Board(int height,int width);
+	Board(int boardHeight, int boardWidth);
 	~Board();
 
 private:
-	const bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active);
-	const bool checkFull();
-	int width;
-	int height;
+	bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active) const;
+	bool checkFull() const;
+	const int width;
+	const int height;
 	char * field;
 	void resetBoard();
 };
