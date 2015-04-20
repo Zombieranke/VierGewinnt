@@ -11,7 +11,7 @@
 #include "Board.h"
 #include "Player.h"
 #include "HumanPlayer.h"
-#include "Computerplayer.h"
+#include "ComputerPlayer.h"
 using namespace std;
 
 
