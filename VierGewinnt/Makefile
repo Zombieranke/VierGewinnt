@@ -26,4 +26,4 @@ Stack.o: Stack.cpp Stack.h
 	${CC} ${CFLAGS} -c -o Stack.o Stack.cpp
 
 clean:
-	rm -f GameManager.o Player.o ComputerPlayer.o HumanPlayer.o Board.o Stack.o GameManager
+	rm -f GameManager.o Player.o ComputerPlayer.o HumanPlayer.o Board.o Stack.o VierGewinnt
