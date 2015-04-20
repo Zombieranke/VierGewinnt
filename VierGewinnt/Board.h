@@ -27,11 +27,11 @@ public:
 	~Board();
 
 private:
-	bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active) const;
-	int check(int dirRow, int dirCol, int row, int col, Player * active) const;
+	//bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active) const;
+	int check(int dirRow, int dirCol, int row, int col, char color) const;
 	bool checkFull() const;
-	void undo(int selectedColumn);
-	int pcTry(int selectedColumn, char color);
+	//void undo(int selectedColumn);
+	int pcTry(int selectedColumn, char color) const;
 	bool checkWon(int lastStoneRow,int lastStoneColumn,char color) const;
 	const int width;
 	const int height;

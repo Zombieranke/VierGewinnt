@@ -58,8 +58,11 @@ int ComputerPlayer::makeMove(Board * board) const
 		if(board->checkMove(i))
 		{
 			lastStoneRow = board->pcTry(i,playerColor);
-			canWin = board->checkWon(lastStoneRow,i,playerColor);
-			board->undo(i);
+			if(lastStoneRow >=0)
+			{
+				canWin = board->checkWon(lastStoneRow,i,playerColor);
+			}
+			//board->undo(i);
 			if(canWin)
 			{
 				return i;
@@ -72,8 +75,11 @@ int ComputerPlayer::makeMove(Board * board) const
 		if(board->checkMove(i))
 		{
 			lastStoneRow = board->pcTry(i,otherPlayerColor);
-			wouldLose = board->checkWon(lastStoneRow,i,otherPlayerColor);
-			board->undo(i);
+			if(lastStoneRow >=0)
+			{
+				wouldLose = board->checkWon(lastStoneRow,i,otherPlayerColor);
+			}
+			//board->undo(i);
 			if(wouldLose)
 			{
 				return i;

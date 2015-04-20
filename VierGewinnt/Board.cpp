@@ -114,7 +114,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 
     if(selectedColumn < 0 || selectedColumn >= width)
     {
-    	cerr << "Not allowed move: Out of Bounds!";
+    	cout << "Not allowed move: Out of Bounds!";
     	return false;
     }
 
@@ -135,7 +135,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 	{
 		lastMoves->push(lastMoves,selectedColumn);
 		field[lastStoneRow*width+selectedColumn] = active->getColor();
-		if(checkWon(lastStoneRow,lastStoneColumn,active))
+		if(checkWon(lastStoneRow,lastStoneColumn,active->getColor()))
 		{
 			showBoard();
 			active->win();
@@ -157,14 +157,14 @@ bool Board::setStone(int selectedColumn,Player* active)
 	}
 	else
 	{
-		cerr << "Unallowed move: Column is full" << endl;
+		cout << "Unallowed move: Column is full" << endl;
 		return false;
 	}
 
 }
 
 
-int Board::pcTry(int selectedColumn,char color)
+int Board::pcTry(int selectedColumn,char color) const
 {
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
@@ -182,14 +182,12 @@ int Board::pcTry(int selectedColumn,char color)
         }
     }
 
-    field[lastStoneRow*width+selectedColumn] = color;
-
     return lastStoneRow;
 
 }
 
-
-void Board::undo(int selectedColumn)
+//fell with the removal of iterative checkwon
+/*void Board::undo(int selectedColumn)
 {
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
@@ -209,16 +207,16 @@ void Board::undo(int selectedColumn)
     lastStoneRow++;
 
     field[lastStoneRow*width+selectedColumn] = ' ';
-}
+}*/
 
 
-bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
+bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
 {
 	int checkSum[4];
-	checkSum[0] = check(0, -1, lastStoneRow, lastStoneColumn -1, active) + 1 + check(0, 1, lastStoneRow, lastStoneColumn + 1, active);
-	checkSum[1] = 1 + check(1, 0, lastStoneRow + 1, lastStoneColumn, active);
-	checkSum[2] = check(-1, -1, lastStoneRow - 1, lastStoneColumn - 1, active) + 1 + check(1, 1, lastStoneRow + 1, lastStoneColumn + 1, active);
-	checkSum[3] = check(-1, 1, lastStoneRow - 1, lastStoneColumn + 1, active) + 1 + check(1, -1, lastStoneRow + 1, lastStoneColumn - 1, active);
+	checkSum[0] = check(0, -1, lastStoneRow, lastStoneColumn -1, color) + 1 + check(0, 1, lastStoneRow, lastStoneColumn + 1, color);
+	checkSum[1] = 1 + check(1, 0, lastStoneRow + 1, lastStoneColumn, color);
+	checkSum[2] = check(-1, -1, lastStoneRow - 1, lastStoneColumn - 1, color) + 1 + check(1, 1, lastStoneRow + 1, lastStoneColumn + 1, color);
+	checkSum[3] = check(-1, 1, lastStoneRow - 1, lastStoneColumn + 1, color) + 1 + check(1, -1, lastStoneRow + 1, lastStoneColumn - 1, color);
 
 	for(int i : checkSum)
 	{
@@ -232,8 +230,8 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 
 }
 
-
-bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
+//was not working like intended(errors in valgrind)
+/*bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
 {
 	int i = 0;
     int j = 0;
@@ -338,18 +336,18 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
     }
     return false;
 
-}
+}*/
 
-int Board::check(int dirRow, int dirCol, int row, int col, Player * active)  const
+int Board::check(int dirRow, int dirCol, int row, int col, char color)  const
 {
 	if(row<0 || row>=height || col<0 || col>=width)
 	{
 		return 0;
 	}
 
-	if(field[row*width+col] == active->getColor())
+	if(field[row*width+col] == color)
 	{
-		return 1 + check(dirRow, dirCol, row + dirRow, col + dirCol, active);
+		return 1 + check(dirRow, dirCol, row + dirRow, col + dirCol, color);
 	}
 	else
 	{
