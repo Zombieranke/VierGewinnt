@@ -87,7 +87,7 @@ int menu(Player * &p1, Player * &p2)
 		cin >> tempColor;
 		cout << endl;
 
-		while(tempColor == '.' || tempColor == ' ')
+		while(tempColor == '.' || tempColor == ' ' || tempColor == 'x')
 		{
 			cout << "This symbol is not available. Please choose another one: ";
 			cin >> tempColor;

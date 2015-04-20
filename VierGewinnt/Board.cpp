@@ -126,7 +126,6 @@ bool Board::setStone(int selectedColumn,Player* active)
 	{
 		lastMoves->push(lastMoves,selectedColumn);
 		field[lastStoneRow*width+selectedColumn] = active->getColor();
-		cout << "i do something";
 		if(checkWon(lastStoneRow,lastStoneColumn,active))
 		{
 			showBoard();
@@ -214,7 +213,6 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 
 	for(int i : checkSum)
 	{
-		cout << i<< endl;
 		if(i>=4)
 		{
 
@@ -228,7 +226,6 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 
 bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
 {
-	cout << "stupid";
 	int i = 0;
     int j = 0;
     int rowCount = 0;		//actually one variable would be enough but i decided to have matching names
