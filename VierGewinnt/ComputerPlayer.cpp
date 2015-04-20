@@ -62,7 +62,7 @@ int ComputerPlayer::makeMove(Board * board) const
 			{
 				canWin = board->checkWon(lastStoneRow,i,playerColor);
 			}
-			//board->undo(i);
+
 			if(canWin)
 			{
 				return i;
@@ -79,7 +79,7 @@ int ComputerPlayer::makeMove(Board * board) const
 			{
 				wouldLose = board->checkWon(lastStoneRow,i,otherPlayerColor);
 			}
-			//board->undo(i);
+
 			if(wouldLose)
 			{
 				return i;
@@ -193,6 +193,20 @@ int ComputerPlayer::makeMove(Board * board) const
 			}
 			else
 			{
+
+				myMove = lastMove;
+				if(board->checkMove(myMove))
+				{
+					return myMove;
+				}
+
+				myMove = secondLastMove;
+
+				if(board->checkMove(myMove))
+				{
+					return myMove;
+				}
+
 				for(i = 0; i<board->width; i++)
 				{
 					myMove = i;
