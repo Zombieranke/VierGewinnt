@@ -23,7 +23,7 @@ int HumanPlayer::makeMove(Board * board) const
 
 	while(!(board->checkMove(column)))
 	{
-		cout << "Where do you want to throw your piece in, " << name << "?" << endl;
+		cout << "Move not possible! Where do you want to throw your piece in, " << name << "?" << endl;
 		cin >> column;
 		column--;
 	}

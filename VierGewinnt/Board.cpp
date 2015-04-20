@@ -374,12 +374,10 @@ bool Board::checkMove(int column) const
 {
 	if(column > width || column < 0)
 	{
-		cout << "Unallowed move: column out of range" << endl;
 		return false;
 	}
 	if(field[column] != ' ')
 	{
-		cout << "The chosen column is full. Please select another column" << endl;
 		return false;
 	}
 	return true;
