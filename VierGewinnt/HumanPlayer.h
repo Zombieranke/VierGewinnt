@@ -3,6 +3,7 @@
  *
  *  Created on: 02.04.2015
  *      Author: Christoph Majcen
+ *      		Arthur Bouz
  */
 
 #ifndef HUMANPLAYER_H_

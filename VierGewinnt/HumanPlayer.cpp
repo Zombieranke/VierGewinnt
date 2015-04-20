@@ -3,6 +3,7 @@
  *
  *  Created on: 02.04.2015
  *      Author: Christoph Majcen
+ *      		Arthur Bouz
  */
 #include <iostream>
 #include "HumanPlayer.h"
