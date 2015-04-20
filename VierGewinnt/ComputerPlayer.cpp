@@ -5,8 +5,10 @@
  *      Author: Christine
  */
 #include "ComputerPlayer.h"
+#include "Board.h"
 #include <iostream>
 #include <cstddef>
+#include <stdlib.h>
 #include <math.h>
 using namespace std;
 
@@ -43,7 +45,7 @@ ComputerPlayer::ComputerPlayer(const string &name, const char &color, const char
 }
 
 
-int ComputerPlayer::makeMove(const Board * board) const
+int ComputerPlayer::makeMove(Board * board) const
 {
 	bool canWin = false; //if he can win everything stops immediately
 	bool wouldLose = false; //if he would lose he will defend on the very same spot instead of using any algorithm

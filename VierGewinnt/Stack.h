@@ -10,6 +10,8 @@
 #define STACK_H_
 
 class Stack {
+
+	friend class ComputerPlayer;
 public:
 	void push(Stack* &list, int value);
 	int pop(Stack* &list);

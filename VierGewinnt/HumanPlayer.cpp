@@ -13,7 +13,7 @@ HumanPlayer::HumanPlayer(const string &name, const char &color) : Player(name, c
 {}
 
 
-int HumanPlayer::makeMove(const Board * board) const
+int HumanPlayer::makeMove(Board * board) const
 {
 	int column;
 	cout << "Where do you want to throw your piece in, " << name << "?" << endl;

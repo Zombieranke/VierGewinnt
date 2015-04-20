@@ -15,7 +15,7 @@ class HumanPlayer : public Player
 	public:
 		HumanPlayer(const std::string &name, const char &color);
 		~HumanPlayer();
-		int makeMove(const Board * board) const;
+		int makeMove(Board * board) const;
 };
 
 

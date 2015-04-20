@@ -20,7 +20,7 @@ public:
 	virtual ~Player();
 	std::string getName() const;
 	void win();
-	virtual int makeMove(const Board * board) const = 0;
+	virtual int makeMove(Board * board) const = 0;
 	char getColor() const;
 	int getWins() const;
 protected:
