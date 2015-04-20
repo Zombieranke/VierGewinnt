@@ -89,10 +89,11 @@ int ComputerPlayer::makeMove(Board * board) const
 	if(board->lastMoves != NULL)
 	{
 		lastMove = board->lastMoves->value;
-	}
-	if(board->lastMoves->next != NULL && board->lastMoves->next->next != NULL)
-	{
-		secondLastMove = board->lastMoves->next->next->value;
+
+		if(board->lastMoves->next != NULL && board->lastMoves->next->next != NULL)
+		{
+			secondLastMove = board->lastMoves->next->next->value;
+		}
 	}
 
 
@@ -100,7 +101,7 @@ int ComputerPlayer::makeMove(Board * board) const
 
 	if(lastMove == -1)
 	{
-		myMove = floor(board->width/2);
+		myMove = (int) floor(board->width/2);
 		return myMove;
 	}
 	else

@@ -99,7 +99,6 @@ void Board::showBoard() const
 	cout << "Last Move: ";
 	lastMoves->print(lastMoves);
 	cout  << endl;
-
 }
 
 bool Board::setStone(int selectedColumn,Player* active)
@@ -108,6 +107,12 @@ bool Board::setStone(int selectedColumn,Player* active)
     int lastStoneColumn = selectedColumn;
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
+
+    if(selectedColumn < 0 || selectedColumn >= width)
+    {
+    	cerr << "Not allowed move: Out of Bounds!";
+    	return false;
+    }
 
 
     for(i=0;i<height;i++)
