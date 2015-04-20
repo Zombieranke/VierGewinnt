@@ -68,4 +68,5 @@ Stack::~Stack()
 	{
 		delete this->next;
 	}
+	next = NULL;
 }

@@ -16,6 +16,7 @@ public:
 	void push(Stack* &list, int value);
 	int pop(Stack* &list);
 	void print(Stack* list);
+	void empty();
 	Stack();
 	Stack(int value);
 	~Stack();

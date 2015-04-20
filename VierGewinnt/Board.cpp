@@ -62,6 +62,10 @@ void Board::resetBoard()
 			field[i*width+j] = ' ';
 		}
 	}
+
+	delete lastMoves;
+	lastMoves = NULL;
+
 }
 
 void Board::showBoard() const
@@ -386,6 +390,7 @@ bool Board::checkMove(int column) const
 Board::~Board()
 {
     delete[] field;
+    delete lastMoves;
 }
 
 
