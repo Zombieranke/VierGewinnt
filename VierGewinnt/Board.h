@@ -20,9 +20,6 @@ class Board
 
 public:
 	bool setStone(int selectedColumn, Player * active);
-	int pcTry(int selectedColumn, char color);
-	bool checkWon(int lastStoneRow,int lastStoneColumn,char color) const;
-	void undo(int selectedColumn);
 	void showBoard() const;
 	bool checkMove(int column) const;
 	Board();
@@ -33,6 +30,9 @@ private:
 	bool checkWon(int lastStoneRow,int lastStoneColumn,Player * active) const;
 	int check(int dirRow, int dirCol, int row, int col, Player * active) const;
 	bool checkFull() const;
+	void undo(int selectedColumn);
+	int pcTry(int selectedColumn, char color);
+	bool checkWon(int lastStoneRow,int lastStoneColumn,char color) const;
 	const int width;
 	const int height;
 	char * field;
