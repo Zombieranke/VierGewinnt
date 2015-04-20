@@ -185,7 +185,17 @@ int ComputerPlayer::makeMove(Board * board) const
 					}
 				}
 			}
-
+			else
+			{
+				for(i = 0; i<board->width; i++)
+				{
+					myMove = i;
+					if(board->checkMove(myMove))
+					{
+						return myMove;
+					}
+				}
+			}
 		}
 	}
 
