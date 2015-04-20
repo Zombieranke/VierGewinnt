@@ -2,7 +2,8 @@
  * ComputerPlayer.cpp
  *
  *  Created on: 02.04.2015
- *      Author: Christine
+ *      Author: Christoph Majcen
+ *      		Arthur Bouz
  */
 #include "ComputerPlayer.h"
 #include "Board.h"
@@ -17,7 +18,6 @@ ComputerPlayer::ComputerPlayer(const char &otherPlayerColor) :Player()
 	name = "Marvin";
 	playerColor = 'x';
 	this->otherPlayerColor = otherPlayerColor;
-
 }
 
 ComputerPlayer::ComputerPlayer(int number) :Player()

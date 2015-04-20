@@ -2,7 +2,8 @@
  * Stack.cpp
  *
  *  Created on: 19.04.2015
- *      Author: Zombieranke
+ *      Author: Arthur Bouz
+ *      		Christoph Majcen
  */
 
 #include "Stack.h"
