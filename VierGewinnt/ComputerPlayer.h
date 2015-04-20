@@ -10,13 +10,18 @@
 #include <string>
 #include "Player.h"
 
+
 class ComputerPlayer : public Player
 {
 	public:
-		ComputerPlayer();
-		ComputerPlayer(const std::string &name, const char &color);
+		ComputerPlayer(int number);
+		ComputerPlayer(const char &otherPlayerColor);
+		ComputerPlayer(const std::string &name, const char &color, const char &otherPlayerColor);
 		~ComputerPlayer();
 		int makeMove(const Board * board) const;
+
+	private:
+		char otherPlayerColor;
 };
 
 

@@ -20,6 +20,9 @@ class Board
 
 public:
 	bool setStone(int selectedColumn, Player * active);
+	int pcTry(int selectedColumn, char color);
+	bool checkWon(int lastStoneRow,int lastStoneColumn,char color) const;
+	void undo(int selectedColumn);
 	void showBoard() const;
 	bool checkMove(int column) const;
 	Board();

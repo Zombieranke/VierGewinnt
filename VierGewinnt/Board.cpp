@@ -109,7 +109,6 @@ bool Board::setStone(int selectedColumn,Player* active)
     int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
     int i = 0;
 
-    lastMoves->push(lastMoves,selectedColumn);
 
     for(i=0;i<height;i++)
     {
@@ -117,38 +116,90 @@ bool Board::setStone(int selectedColumn,Player* active)
         {
             lastStoneRow++;
         }
-    }
-
-    if(lastStoneRow >= 0)
-    {
-        field[lastStoneRow*width+selectedColumn] = active->getColor();
-        if(checkWon(lastStoneRow,lastStoneColumn,active))
+        else
         {
-        	showBoard();
-        	active->win();
-        	cout << "Player " << active->getName() <<" has won. Congratulations!" << endl;
-        	resetBoard();
-        	return true;
-
+        	break;
         }
-
-        if(checkFull())
-        {
-        	showBoard();
-        	cout << "The board is full and noone has won. It's a draw" << endl;
-        	resetBoard();
-        	return true;
-        }
-        return false;
-
     }
-    else
+
+	if(lastStoneRow >= 0)
+	{
+		lastMoves->push(lastMoves,selectedColumn);
+		field[lastStoneRow*width+selectedColumn] = active->getColor();
+		if(checkWon(lastStoneRow,lastStoneColumn,active))
+		{
+			showBoard();
+			active->win();
+			cout << "Player " << active->getName() <<" has won. Congratulations!" << endl;
+			resetBoard();
+			return true;
+
+		}
+
+		if(checkFull())
+		{
+			showBoard();
+			cout << "The board is full and noone has won. It's a draw" << endl;
+			resetBoard();
+			return true;
+		}
+		return false;
+
+	}
+	else
+	{
+		cerr << "Unallowed move: Column is full" << endl;
+		return false;
+	}
+
+}
+
+
+int Board::pcTry(int selectedColumn,char color)
+{
+    int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
+    int i = 0;
+
+
+    for(i=0;i<height;i++)
     {
-    	cerr << "Unallowed move: Column is full" << endl;
-    	return false;
+        if(field[i*width+selectedColumn] == ' ')
+        {
+            lastStoneRow++;
+        }
+        else
+        {
+        	break;
+        }
     }
 
+    field[lastStoneRow*width+selectedColumn] = color;
 
+    return lastStoneRow;
+
+}
+
+
+void Board::undo(int selectedColumn)
+{
+    int lastStoneRow = -1; //the column may be full already so one has to check whether the first slot is free
+    int i = 0;
+
+
+    for(i=0;i<height;i++)
+    {
+        if(field[i*width+selectedColumn] == ' ')
+        {
+            lastStoneRow++;
+        }
+        else
+        {
+        	break;
+        }
+    }
+    lastStoneRow++;
+
+    field[lastStoneRow*width+selectedColumn] = ' ';
 }
 
 
@@ -169,10 +220,12 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 	}
 	return false;
 
+}
 
 
-
-    /*int i = 0;
+bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
+{
+	int i = 0;
     int j = 0;
     int rowCount = 0;		//actually one variable would be enough but i decided to have matching names
     int columnCount = 0;
@@ -187,7 +240,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
         }
         else
         {
-            if(field[lastStoneRow*width+i] == active->getColor())
+            if(field[lastStoneRow*width+i] == color)
             {
                 rowCount++;
                 if(rowCount == 4)
@@ -204,7 +257,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 
     for(i=lastStoneRow;i<height && i <= (lastStoneRow+3);i++) //column check
     {
-    	if(field[i*width+lastStoneColumn] == active->getColor())
+    	if(field[i*width+lastStoneColumn] == color)
     	{
     		columnCount++;
     		if(columnCount == 4)
@@ -231,7 +284,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
         }
         else
         {
-            if(field[j*width+i] == active->getColor())
+            if(field[j*width+i] == color)
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -259,7 +312,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
         }
         else
         {
-            if(field[j*width+i] == active->getColor())
+            if(field[j*width+i] == color)
             {
                 diagonalCount++;
                 if(diagonalCount >= 4)
@@ -273,7 +326,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
             }
         }
     }
-    return false;*/
+    return false;
 
 }
 
@@ -314,6 +367,11 @@ bool Board::checkMove(int column) const
 	if(column > width || column < 0)
 	{
 		cout << "Unallowed move: column out of range" << endl;
+		return false;
+	}
+	if(field[column] != ' ')
+	{
+		cout << "The chosen column is full. Please select another column" << endl;
 		return false;
 	}
 	return true;

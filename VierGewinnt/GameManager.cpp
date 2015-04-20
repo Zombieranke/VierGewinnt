@@ -122,7 +122,7 @@ int menu(Player * &p1, Player * &p2)
 		}
 		else
 		{
-			p2 = new ComputerPlayer();
+			p2 = new ComputerPlayer(p1->getColor());
 
 			cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl << endl;
 
@@ -130,12 +130,12 @@ int menu(Player * &p1, Player * &p2)
 	}
 	else
 	{
-		p1 = new ComputerPlayer();
+		p1 = new ComputerPlayer(1);
 
 		cout << p1->getName() <<" has chosen " << p1->getColor() << "." << endl;
 
 
-		p2 = new ComputerPlayer();
+		p2 = new ComputerPlayer(2);
 
 		cout << p2->getName() <<" has chosen " << p2->getColor() << "." << endl;
 	}
