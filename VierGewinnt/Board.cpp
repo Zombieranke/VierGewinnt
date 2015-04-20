@@ -126,6 +126,7 @@ bool Board::setStone(int selectedColumn,Player* active)
 	{
 		lastMoves->push(lastMoves,selectedColumn);
 		field[lastStoneRow*width+selectedColumn] = active->getColor();
+		cout << "i do something";
 		if(checkWon(lastStoneRow,lastStoneColumn,active))
 		{
 			showBoard();
@@ -207,14 +208,16 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 {
 	int checkSum[4];
 	checkSum[0] = check(0, -1, lastStoneRow, lastStoneColumn -1, active) + 1 + check(0, 1, lastStoneRow, lastStoneColumn + 1, active);
-	checkSum[1] = 1 + check(-1, 0, lastStoneRow - 1, lastStoneColumn, active);
+	checkSum[1] = 1 + check(1, 0, lastStoneRow + 1, lastStoneColumn, active);
 	checkSum[2] = check(-1, -1, lastStoneRow - 1, lastStoneColumn - 1, active) + 1 + check(1, 1, lastStoneRow + 1, lastStoneColumn + 1, active);
 	checkSum[3] = check(-1, 1, lastStoneRow - 1, lastStoneColumn + 1, active) + 1 + check(1, -1, lastStoneRow + 1, lastStoneColumn - 1, active);
 
 	for(int i : checkSum)
 	{
+		cout << i<< endl;
 		if(i>=4)
 		{
+
 			return true;
 		}
 	}
@@ -225,6 +228,7 @@ bool Board::checkWon(int lastStoneRow,int lastStoneColumn,Player* active) const
 
 bool Board::checkWon(int lastStoneRow,int lastStoneColumn,char color) const
 {
+	cout << "stupid";
 	int i = 0;
     int j = 0;
     int rowCount = 0;		//actually one variable would be enough but i decided to have matching names
