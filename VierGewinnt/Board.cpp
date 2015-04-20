@@ -244,7 +244,7 @@ bool Board::checkFull()const
 
 bool Board::checkMove(int column) const
 {
-	if(column > width || column < 0)
+	if(column >= width || column < 0)
 	{
 		return false;
 	}
